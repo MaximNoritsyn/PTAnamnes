@@ -18,10 +18,13 @@ class PTApp(App):
     def build(self):
 
         sm = ScreenManager()
+        sm.add_widget(MainScreen(name="main"))
+        sm.add_widget(LoginScreen(name="login"))
         if store.exists('LoggedUser'):
-            sm.add_widget(MainScreen(name="main"))
+            sm.current = 'main'
         else:
-            sm.add_widget(LoginScreen(name="login"))
+            sm.current = 'login'
+
         return sm
 
 
