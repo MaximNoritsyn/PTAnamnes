@@ -3,6 +3,8 @@ from kivy.uix.gridlayout import GridLayout
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.uix.button import Button
 
+
+
 # Declare both screens
 class LoginScreen(Screen):
     pass
@@ -12,10 +14,11 @@ class MainScreen(Screen):
 
 class PTApp(App):
     def build(self):
-        sc = ScreenManager()
-        sc.add_widget(LoginScreen(name="login"))
-        sc.add_widget(MainScreen(name="main"))
-        return sc
+        sm = ScreenManager()
+        sm.add_widget(LoginScreen(name="login"))
+        sm.add_widget(MainScreen(name="main"))
+        sm.current = 'login'
+        return sm
 
 
 if __name__ == '__main__':
