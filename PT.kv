@@ -1,6 +1,15 @@
 <LoginScreen>:
-    Label:
-        text: 'Login settings'
+    GridLayout
+        cols:1
+        Label:
+            id: login
+            text: 'Name of user'
+        TextInput:
+            id: txt_input
+        Button:
+            id: loginIn
+            text: 'Log in'
+            on_press: root.LogIn()
 
 <MainScreen>:
     Label:

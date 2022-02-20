@@ -5,9 +5,10 @@ from kivy.storage.jsonstore import JsonStore
 store = JsonStore('PTAnamnes_Store.json')
 
 
-# Declare both screens
 class LoginScreen(Screen):
-    pass
+
+    def LogIn(self):
+        print(self.ids['txt_input'].text)
 
 
 class MainScreen(Screen):
