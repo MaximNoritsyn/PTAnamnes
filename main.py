@@ -2,13 +2,17 @@ from kivy.app import App
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.storage.jsonstore import JsonStore
 
-store = JsonStore('PTAnamnes_Store.json')
+storeUser = JsonStore('PTA_UserData.json')
 
 
 class LoginScreen(Screen):
 
-    def LogIn(self):
-        print(self.ids['txt_input'].text)
+    def pt_login(self):
+        if self.ids['txt_input'].text != '':
+            storeUser.put('User', name=self.ids['txt_input'].text)
+        else:
+            # we need say to user
+            pass
 
 
 class MainScreen(Screen):
@@ -24,7 +28,7 @@ class PTApp(App):
     def build(self):
 
         sm = ScreenManager()
-        if store.exists('LoggedUser'):
+        if storeUser.exists('User'):
             sm.add_widget(MainScreen(name="main"))
             sm.add_widget(SettingsScreen(name="settings"))
             sm.switch_to(sm.screens[0])
