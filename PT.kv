@@ -1,3 +1,22 @@
+#: import SlideTransition kivy.uix.screenmanager.SlideTransition
+
+ScreenManager:
+    transition: SlideTransition(direction="right")
+    id: screen_manager
+
+	LoginScreen:
+		id: login_screen
+		name: 'login'
+		manager: screen_manager
+	MainScreen:
+		id: main_screen
+		name: 'main'
+		manager: screen_manager
+	SettingsScreen:
+		id: settings_screen
+		name: 'settings'
+		manager: screen_manager
+
 <LoginScreen>:
     GridLayout
         cols:1

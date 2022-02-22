@@ -1,4 +1,5 @@
 from kivy.app import App
+from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.storage.jsonstore import JsonStore
 
@@ -24,18 +25,9 @@ class SettingsScreen(Screen):
 
 
 class PTApp(App):
-
     def build(self):
-
-        sm = ScreenManager()
-        if storeUser.exists('User'):
-            sm.add_widget(MainScreen(name="main"))
-            sm.add_widget(SettingsScreen(name="settings"))
-            sm.switch_to(sm.screens[0])
-        else:
-            sm.add_widget(LoginScreen(name="login"))
-
-        return sm
+        # Retornar com função Builder.load_string evita erros em acentuação.
+        return Builder.load_string(open('PT.kv', encoding='UTF-8').read())
 
 
 if __name__ == '__main__':
