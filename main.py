@@ -2,15 +2,18 @@ from kivy.app import App
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.storage.jsonstore import JsonStore
+from kivy.properties import BooleanProperty
 
-storeUser = JsonStore('PTA_UserData.json')
+store_user = JsonStore('PTA_UserData.json')
 
 
 class LoginScreen(Screen):
 
+    is_logged = BooleanProperty(store_user.exists('User'))
+
     def pt_login(self):
         if self.ids['txt_input'].text != '':
-            storeUser.put('User', name=self.ids['txt_input'].text)
+            store_user.put('User', name=self.ids['txt_input'].text)
         else:
             # we need say to user
             pass

@@ -8,32 +8,45 @@ ScreenManager:
 		id: login_screen
 		name: 'login'
 		manager: screen_manager
+
 	MainScreen:
 		id: main_screen
 		name: 'main'
 		manager: screen_manager
+
 	SettingsScreen:
 		id: settings_screen
 		name: 'settings'
 		manager: screen_manager
 
 <LoginScreen>:
+    is_logged: root.store_user_logged()
+
     GridLayout
         cols:1
+
         Label:
             id: login
             text: 'Name of user'
+
         TextInput:
             id: txt_input
+            multiline: False
+
         Button:
             id: loginIn
             text: 'Log in'
-            on_press: root.pt_login()
+            on_press:
+                root.pt_login()
+                app.root.current = "main"
+                root.manager.transition.direction = "left"
 
 <MainScreen>:
+
     Label:
         text: 'Main menu'
 
 <SettingsScreen>:
+
     Label:
         text: 'Settings menu'
