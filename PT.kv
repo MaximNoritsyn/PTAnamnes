@@ -15,18 +15,24 @@ ScreenManager:
 		manager: screen_manager
 
 <LoginPopup>:
-    size: (400, 400)
+    size: (5, 5)
+    title_size: 25
+    title_align: 'center'
+    separator_height: 5
     title: 'Log in first'
-    GridLayout
-        cols:1
+    BoxLayout
+        orientation: 'vertical'
 
-        Label:
-            text: 'Name of user'
+        BoxLayout
+            orientation: 'horizontal'
 
-        TextInput:
-            id: login
-            height: 10
-            multiline: False
+            Label:
+                text: 'Name of user'
+
+            TextInput:
+                id: login
+                height: 10
+                multiline: False
 
         Button:
             text: 'Log in'
