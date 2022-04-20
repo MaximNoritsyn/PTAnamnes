@@ -10,7 +10,7 @@ class LoginPopup(Popup):
 
     def __init__(self):
         super().__init__()
-        self.pop = Popup(title="Log in first", content=self, auto_dismiss=False)
+        self.pop = Popup(title="", content=self, auto_dismiss=False)
 
     def open_login(self):
         self.pop.open()
