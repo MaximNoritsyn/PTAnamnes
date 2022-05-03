@@ -15,29 +15,40 @@ ScreenManager:
 		manager: screen_manager
 
 <LoginPopup>:
-    size: (5, 5)
+    id: popup
     title_size: 25
     title_align: 'center'
-    separator_height: 5
     title: 'Log in first'
-    BoxLayout
-        orientation: 'vertical'
 
-        BoxLayout
-            orientation: 'horizontal'
+    AnchorLayout:
+        anchor_x: "center"
+        anchor_y: "center"
+        padding: [10, 10, 10, 10]
 
-            Label:
-                text: 'Name of user'
+        BoxLayout:
+            orientation: 'vertical'
+
+            BoxLayout:
 
             TextInput:
                 id: login
-                height: 10
                 multiline: False
+                line_height: 50
+                font_size: 20
+                halign: 'center'
+                hint_text: 'Name of user'
+                size_hint: (1, None)
+                height: 50
 
-        Button:
-            text: 'Log in'
-            on_press:
-                root.pt_login()
+            Button:
+                text: 'Log in'
+                title_align: 'center'
+                size_hint: (1, None)
+                height: 50
+                on_press:
+                    root.pt_login()
+
+            BoxLayout:
 
 <MainScreen>:
 
