@@ -1,7 +1,9 @@
 from kivy.app import App
+from kivy.lang import Builder
 from kivy.uix.popup import Popup
 from kivy.uix.screenmanager import Screen
 from kivy.storage.jsonstore import JsonStore
+from kivy.core.window import Window
 
 store_user = JsonStore('PTA_UserData.json')
 
@@ -47,7 +49,7 @@ class SettingsScreen(Screen):
 
 class PTApp(App):
     def build(self):
-        pass
+        return Builder.load_file("PT.kv")
 
 
 if __name__ == '__main__':
