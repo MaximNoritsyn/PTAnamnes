@@ -1,24 +1,9 @@
-#: import SlideTransition kivy.uix.screenmanager.SlideTransition
+<MainScreen>:
 
-ScreenManager:
-    transition: SlideTransition(direction="right")
-    id: screen_manager
+    Label:
+        text: 'Main menu'
 
-	MainScreen:
-		id: main_screen
-		name: 'main'
-		manager: screen_manager
-
-	SettingsScreen:
-		id: settings_screen
-		name: 'settings'
-		manager: screen_manager
-
-<LoginPopup>:
-    id: popup
-    title_size: 25
-    title_align: 'center'
-    title: 'Log in first'
+<SubmitScreen>:
 
     AnchorLayout:
         anchor_x: "center"
@@ -29,6 +14,7 @@ ScreenManager:
             orientation: 'vertical'
 
             BoxLayout:
+                id: placeforcoution
 
             TextInput:
                 id: login
@@ -41,7 +27,7 @@ ScreenManager:
                 height: 50
 
             Button:
-                text: 'Log in'
+                text: 'Submit'
                 title_align: 'center'
                 size_hint: (1, None)
                 height: 50
@@ -49,13 +35,3 @@ ScreenManager:
                     root.pt_login()
 
             BoxLayout:
-
-<MainScreen>:
-
-    Label:
-        text: 'Main menu'
-
-<SettingsScreen>:
-
-    Label:
-        text: 'Settings menu'
