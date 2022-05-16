@@ -13,7 +13,15 @@ def is_not_logged():
 
 
 class MainScreen(Screen):
-    pass
+    def on_touch_move(self, touch):
+        if touch.x < touch.ox:
+            PTApp.get_running_app().change_screen('setting', 'left')
+
+
+class SettingScreen(Screen):
+    def on_touch_move(self, touch):
+        if touch.x > touch.ox:
+            PTApp.get_running_app().change_screen('main', 'right')
 
 
 class SubmitScreen(Screen):
@@ -22,7 +30,7 @@ class SubmitScreen(Screen):
     def pt_login(self):
         if self.ids['login'].text != '':
             store_user.put('User', name=self.ids['login'].text)
-            sm.current = 'main'
+            PTApp.get_running_app().change_screen('main', 'left')
         else:
             # we need say to user
             if self.coutionLabel.parent is None:
@@ -33,6 +41,7 @@ Builder.load_file("PT.kv")
 
 sm = ScreenManager()
 sm.add_widget(MainScreen(name='main'))
+sm.add_widget(SettingScreen(name='setting'))
 sm.add_widget(SubmitScreen(name='submit'))
 
 
@@ -41,6 +50,10 @@ class PTApp(App):
         if is_not_logged():
             sm.current = 'submit'
         return sm
+
+    def change_screen(self, screen_name, screen_direction):
+        sm.transition.direction = screen_direction
+        sm.current = screen_name
 
 
 if __name__ == '__main__':

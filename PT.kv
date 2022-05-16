@@ -3,6 +3,11 @@
     Label:
         text: 'Main menu'
 
+<SettingScreen>:
+
+    Label:
+        text: 'Setting menu'
+
 <SubmitScreen>:
 
     AnchorLayout:
@@ -20,17 +25,17 @@
                 id: login
                 multiline: False
                 line_height: 50
-                font_size: 20
+                font_size: 80
                 halign: 'center'
                 hint_text: 'Name of user'
                 size_hint: (1, None)
-                height: 50
+                height: 100
 
             Button:
                 text: 'Submit'
                 title_align: 'center'
                 size_hint: (1, None)
-                height: 50
+                height: 100
                 on_press:
                     root.pt_login()
 
