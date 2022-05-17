@@ -14,14 +14,18 @@ def is_not_logged():
 
 class MainScreen(Screen):
     def on_touch_move(self, touch):
-        if touch.x < touch.ox:
+        if (touch.ox - touch.x) > 100:
+            print(touch.ox - touch.x)
             PTApp.get_running_app().change_screen('setting', 'left')
 
 
 class SettingScreen(Screen):
     def on_touch_move(self, touch):
-        if touch.x > touch.ox:
+        if (touch.x - touch.ox) > 100:
             PTApp.get_running_app().change_screen('main', 'right')
+
+    def shutdown(self):
+        PTApp.get_running_app().stop()
 
 
 class SubmitScreen(Screen):
@@ -32,7 +36,6 @@ class SubmitScreen(Screen):
             store_user.put('User', name=self.ids['login'].text)
             PTApp.get_running_app().change_screen('main', 'left')
         else:
-            # we need say to user
             if self.coutionLabel.parent is None:
                 self.ids['placeforcoution'].add_widget(self.coutionLabel)
 

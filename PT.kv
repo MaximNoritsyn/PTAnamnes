@@ -5,8 +5,16 @@
 
 <SettingScreen>:
 
-    Label:
-        text: 'Setting menu'
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            text: 'Setting menu'
+
+        BoxLayout:
+            padding: [20, 20, 20, 20]
+            Button:
+                text: 'Shut down'
+                on_press: root.shutdown()
 
 <SubmitScreen>:
 
