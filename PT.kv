@@ -1,7 +1,45 @@
 <MainScreen>:
 
-    Label:
-        text: 'Main menu'
+    BoxLayout:
+        padding: [20, 20, 20, 20]
+        orientation: 'vertical'
+
+        Label:
+            text: 'Main menu'
+
+        BoxLayout:
+            orientation: 'vertical'
+            padding: [20, 20, 20, 20]
+
+            Label:
+                text: 'Patient'
+
+            TextInput:
+                padding: [10, 10, 10, 10]
+                id: firstname_patient
+                multiline: False
+                line_height: 30
+                font_size: 30
+                halign: 'center'
+                hint_text: 'First name'
+                size_hint: (1, None)
+                height: 50
+
+            TextInput:
+                padding: [10, 10, 10, 10]
+                id: lastname_patient
+                multiline: False
+                line_height: 30
+                font_size: 30
+                halign: 'center'
+                hint_text: 'Last name'
+                size_hint: (1, None)
+                height: 50
+
+        BoxLayout:
+            padding: [20, 20, 20, 20]
+
+
 
 <SettingScreen>:
 
@@ -15,6 +53,7 @@
             Button:
                 text: 'Shut down'
                 on_press: root.shutdown()
+
 
 <SubmitScreen>:
 
