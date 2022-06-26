@@ -32,3 +32,12 @@ def get_db():
 
 # Use LocalProxy to read the global db instance with just `db`
 db = LocalProxy(get_db)
+
+
+def update_questions():
+    cursor = db.questions.find()
+    list_question = []
+    while Global.Question in cursor:
+        list_question.append(Global.Quastion)
+
+
