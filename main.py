@@ -7,7 +7,6 @@ from kivy.core.window import Window
 
 store_user = JsonStore('PTA_UserData.json')
 
-
 def is_not_logged():
     return not store_user.exists('User')
 
