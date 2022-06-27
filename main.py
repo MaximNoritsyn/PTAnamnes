@@ -2,13 +2,8 @@ from kivy.app import App
 from kivy.lang import Builder
 from kivy.uix.label import Label
 from kivy.uix.screenmanager import ScreenManager, Screen
-from kivy.storage.jsonstore import JsonStore
 from kivy.core.window import Window
-
-store_user = JsonStore('PTA_UserData.json')
-
-def is_not_logged():
-    return not store_user.exists('User')
+import localstorage
 
 
 class MainScreen(Screen):
@@ -32,7 +27,7 @@ class SubmitScreen(Screen):
 
     def pt_login(self):
         if self.ids['login'].text != '':
-            store_user.put('User', name=self.ids['login'].text)
+            localstorage.user_put(self.ids['login'].text)
             PTApp.get_running_app().change_screen('main', 'left')
         else:
             if self.coutionLabel.parent is None:
@@ -49,7 +44,7 @@ sm.add_widget(SubmitScreen(name='submit'))
 
 class PTApp(App):
     def build(self):
-        if is_not_logged():
+        if localstorage.is_not_logged():
             sm.current = 'submit'
         return sm
 
