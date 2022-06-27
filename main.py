@@ -1,5 +1,6 @@
 from kivy.app import App
 from kivy.lang import Builder
+from kivy.config import Config
 from kivy.uix.label import Label
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.core.window import Window
@@ -44,6 +45,7 @@ sm.add_widget(SubmitScreen(name='submit'))
 
 class PTApp(App):
     def build(self):
+        localstorage.update_questions()
         if localstorage.is_not_logged():
             sm.current = 'submit'
         return sm

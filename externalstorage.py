@@ -11,15 +11,16 @@ import configparser
 import Global
 
 config = configparser.ConfigParser()
-config.read(os.path.abspath(os.path.join(".ini")))
+config.read(".ini")
+
 
 def get_db():
     """
     Configuration method to return db instance
     """
     db = getattr(Global, "_database", None)
-    DB_URI = config["DB_URI"]
-    DB_NAME = config["NS"]
+    DB_URI = config['PROD']["DB_URI"]
+    DB_NAME = config['PROD']["NS"]
     if db is None:
 
         db = Global._database = MongoClient(
@@ -39,5 +40,7 @@ def update_questions():
     list_question = []
     while Global.Question in cursor:
         list_question.append(Global.Quastion)
+
+    return list_question
 
 
