@@ -16,5 +16,4 @@ def user_put(name):
 
 def update_questions():
     questions = externalstorage.update_questions()
-    a=1
     #store_quest

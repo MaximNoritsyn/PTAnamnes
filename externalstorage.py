@@ -38,7 +38,7 @@ db = LocalProxy(get_db)
 def update_questions():
     cursor = db.questions.find()
     list_question = []
-    while Global.Question in cursor:
+    for Global.Quastion in cursor:
         list_question.append(Global.Quastion)
 
     return list_question
