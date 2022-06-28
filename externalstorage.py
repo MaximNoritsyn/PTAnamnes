@@ -35,12 +35,19 @@ def get_db():
 db = LocalProxy(get_db)
 
 
-def update_questions():
+def get_questions():
     cursor = db.questions.find()
     list_question = []
-    for Global.Quastion in cursor:
-        list_question.append(Global.Quastion)
-
+    for doc in cursor:
+        list_question.append(question_srtingid(doc))
     return list_question
 
+
+def question_srtingid(doc):
+    return {
+        'text': doc.get('text'),
+        'section': doc.get('section'),
+        'type': doc.get('type'),
+        '_id': str(doc.get('_id'))
+    }
 
