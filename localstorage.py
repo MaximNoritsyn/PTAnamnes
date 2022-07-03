@@ -3,19 +3,21 @@ import externalstorage
 import Global
 
 
-store_user = JsonStore('PTA_UserData.json')
-store_quest = JsonStore('PTA_Questions.json')
+store_settings = JsonStore('PTA_Settings.json')
+store_questions = JsonStore('PTA_Questions.json')
 
 
 def is_not_logged():
-    return not store_user.exists('User')
+    return not store_settings.exists('User')
 
 
 def user_put(name):
-    store_user.put('User', name=name)
+    store_settings.put('User', name=name)
 
 
 def update_questions():
     questions = externalstorage.get_questions()
+    for x in store_questions.keys():
+        store_questions.delete(x)
     for doc in questions:
-        store_quest[doc.get('_id')] = doc
+        store_questions[doc.get('_id')] = doc
