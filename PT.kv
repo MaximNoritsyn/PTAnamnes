@@ -36,10 +36,10 @@
                 size_hint: (1, None)
                 height: 50
 
-        BoxLayout:
-            padding: [20, 20, 20, 20]
-
-
+        ScrollView:
+            do_scroll_x: False
+            do_scroll_y: True
+            id: questions
 
 <SettingScreen>:
 
@@ -87,3 +87,17 @@
                     root.pt_login()
 
             BoxLayout:
+
+
+<LayoutQuestion>:
+    cols: 1
+    rows: 1
+    size_hint_y: None
+
+    Label:
+        id: text
+        height: self.texture_size[1]
+        text_size: self.width, None
+        padding: 10, 10
+        text:
+            'test\n'

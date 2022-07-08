@@ -21,3 +21,7 @@ def update_questions():
         store_questions.delete(x)
     for doc in questions:
         store_questions[doc.get('_id')] = doc
+
+
+def get_questions():
+    return list(store_questions.find())

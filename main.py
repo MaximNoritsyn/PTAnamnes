@@ -4,6 +4,9 @@ from kivy.config import Config
 from kivy.uix.label import Label
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.core.window import Window
+from kivy.uix.gridlayout import GridLayout
+from kivy.uix.scrollview import ScrollView
+from kivy.uix.button import Button
 import localstorage
 
 
@@ -12,6 +15,18 @@ class MainScreen(Screen):
         if (touch.ox - touch.x) > 100:
             print(touch.ox - touch.x)
             PTApp.get_running_app().change_screen('setting', 'left')
+
+    def fill_questions(self):
+        layout = GridLayout(cols=1, spacing=10, size_hint_y=None)
+        layout.bind(minimum_height=layout.setter('height'))
+        for i in localstorage.get_questions():
+            layout_question = LayoutQuestion()
+            layout_question.ids['text'].text = i[1].get('text')
+            layout.add_widget(layout_question)
+        self.ids['questions'].add_widget(layout)
+
+    def on_enter(self, *args):
+        self.fill_questions()
 
 
 class SettingScreen(Screen):
@@ -33,6 +48,10 @@ class SubmitScreen(Screen):
         else:
             if self.coutionLabel.parent is None:
                 self.ids['placeforcoution'].add_widget(self.coutionLabel)
+
+
+class LayoutQuestion(GridLayout):
+    pass
 
 
 Builder.load_file("PT.kv")
