@@ -4,38 +4,6 @@
         padding: [20, 20, 20, 20]
         orientation: 'vertical'
 
-        Label:
-            text: 'Main menu'
-
-        BoxLayout:
-            orientation: 'vertical'
-            padding: [20, 20, 20, 20]
-
-            Label:
-                text: 'Patient'
-
-            TextInput:
-                padding: [10, 10, 10, 10]
-                id: firstname_patient
-                multiline: False
-                line_height: 30
-                font_size: 30
-                halign: 'center'
-                hint_text: 'First name'
-                size_hint: (1, None)
-                height: 50
-
-            TextInput:
-                padding: [10, 10, 10, 10]
-                id: lastname_patient
-                multiline: False
-                line_height: 30
-                font_size: 30
-                halign: 'center'
-                hint_text: 'Last name'
-                size_hint: (1, None)
-                height: 50
-
         ScrollView:
             do_scroll_x: False
             do_scroll_y: True
@@ -101,3 +69,23 @@
         padding: 10, 10
         text:
             'test\n'
+
+
+<TextInputFirstNamePatient, TextInputLastNamePatient>:
+    padding: [10, 10, 10, 10]
+    multiline: False
+    line_height: 30
+    font_size: 30
+    halign: 'center'
+    size_hint: (1, None)
+    height: 50
+
+
+<TextInputFirstNamePatient>:
+    id: firstname_patient
+    hint_text: 'First name'
+
+
+<TextInputLastNamePatient>:
+    id: lastname_patient
+    hint_text: 'Last name'

@@ -6,7 +6,7 @@ from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.core.window import Window
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.scrollview import ScrollView
-from kivy.uix.button import Button
+from kivy.uix.textinput import TextInput
 import localstorage
 
 
@@ -16,9 +16,11 @@ class MainScreen(Screen):
             print(touch.ox - touch.x)
             PTApp.get_running_app().change_screen('setting', 'left')
 
-    def fill_questions(self):
-        layout = GridLayout(cols=1, spacing=10, size_hint_y=None)
+    def fill_patient(self):
+        layout = GridLayout(cols=1, spacing=1, size_hint_y=None)
         layout.bind(minimum_height=layout.setter('height'))
+        layout.add_widget(TextInputFirstNamePatient())
+        layout.add_widget(TextInputLastNamePatient())
         for i in localstorage.get_questions():
             layout_question = LayoutQuestion()
             layout_question.ids['text'].text = i[1].get('text')
@@ -26,7 +28,7 @@ class MainScreen(Screen):
         self.ids['questions'].add_widget(layout)
 
     def on_enter(self, *args):
-        self.fill_questions()
+        self.fill_patient()
 
 
 class SettingScreen(Screen):
@@ -51,6 +53,14 @@ class SubmitScreen(Screen):
 
 
 class LayoutQuestion(GridLayout):
+    pass
+
+
+class TextInputFirstNamePatient(TextInput):
+    pass
+
+
+class TextInputLastNamePatient(TextInput):
     pass
 
 
