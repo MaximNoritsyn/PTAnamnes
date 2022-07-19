@@ -59,7 +59,6 @@
 
 <LayoutQuestion>:
     cols: 1
-    rows: 1
     size_hint_y: None
 
     Label:
@@ -67,8 +66,7 @@
         height: self.texture_size[1]
         text_size: self.width, None
         padding: 10, 10
-        text:
-            'test\n'
+        text: ''
 
 
 <TextInputFirstNamePatient, TextInputLastNamePatient>:
@@ -89,3 +87,21 @@
 <TextInputLastNamePatient>:
     id: lastname_patient
     hint_text: 'Last name'
+
+
+<TextInputAnswerNum, TextInputAnswerString>:
+    padding: [10, 10, 10, 10]
+    multiline: False
+    line_height: 30
+    font_size: 30
+    halign: 'center'
+    size_hint: (1, None)
+    height: 50
+
+
+<TextInputAnswerNum>:
+    input_type: 'number'
+
+
+<TextInputAnswerString>:
+    input_type: 'text'

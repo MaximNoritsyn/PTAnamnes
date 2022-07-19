@@ -24,6 +24,11 @@ class MainScreen(Screen):
         for i in localstorage.get_questions():
             layout_question = LayoutQuestion()
             layout_question.ids['text'].text = i[1].get('text')
+            if i[1].get('type') == 'num':
+                answer = TextInputAnswerNum()
+            elif i[1].get('type') == 'string':
+                answer = TextInputAnswerString()
+            layout_question.add_widget(answer)
             layout.add_widget(layout_question)
         self.ids['questions'].add_widget(layout)
 
@@ -61,6 +66,14 @@ class TextInputFirstNamePatient(TextInput):
 
 
 class TextInputLastNamePatient(TextInput):
+    pass
+
+
+class TextInputAnswerNum(TextInput):
+    pass
+
+
+class TextInputAnswerString(TextInput):
     pass
 
 
