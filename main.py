@@ -19,12 +19,12 @@ if platform == "android":
 class MainScreen(Screen):
     def on_touch_move(self, touch):
         if (touch.ox - touch.x) > 100:
-            print(touch.ox - touch.x)
             PTApp.get_running_app().change_screen('setting', 'left')
 
     def fill_patient(self):
         layout = GridLayout(cols=1, spacing=1, size_hint_y=None)
         layout.bind(minimum_height=layout.setter('height'))
+        self.ids['questions'].clear_widgets()
         layout.add_widget(TextInputFirstNamePatient())
         layout.add_widget(TextInputLastNamePatient())
         for i in localstorage.get_questions():
