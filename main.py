@@ -3,12 +3,18 @@ from kivy.lang import Builder
 from kivy.config import Config
 from kivy.uix.label import Label
 from kivy.uix.screenmanager import ScreenManager, Screen
+from kivy.utils import platform
 from kivy.core.window import Window
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.scrollview import ScrollView
 from kivy.uix.textinput import TextInput
 import localstorage
 
+if platform == "android":
+     from android.permissions import request_permissions, Permission
+     request_permissions([Permission.INTERNET,
+                          Permission.READ_EXTERNAL_STORAGE,
+                          Permission.WRITE_EXTERNAL_STORAGE])
 
 class MainScreen(Screen):
     def on_touch_move(self, touch):
