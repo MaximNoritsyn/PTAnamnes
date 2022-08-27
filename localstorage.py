@@ -17,11 +17,13 @@ def user_put(name):
 
 def update_questions():
     questions = externalstorage.get_questions()
-    for x in store_questions.keys():
-        store_questions.delete(x)
-    for doc in questions:
-        store_questions[doc.get('_id')] = doc
+    if questions is not None:
+        for x in store_questions.keys():
+            store_questions.delete(x)
+        for doc in questions:
+            store_questions[doc.get('_id')] = doc
 
 
 def get_questions():
+    update_questions()
     return list(store_questions.find())

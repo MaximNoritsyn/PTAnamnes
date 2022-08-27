@@ -1,8 +1,3 @@
 _database = None
 
-
-class Question:
-    text = ''
-    section = ''
-    type = ''
-    _id = ''
+_internet_connection = False

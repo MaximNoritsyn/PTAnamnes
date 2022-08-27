@@ -11,9 +11,7 @@ import configparser
 import Global
 import ssl
 
-
 ssl._create_default_https_context = ssl._create_unverified_context
-
 
 config = configparser.ConfigParser()
 config.read(".ini")
@@ -30,37 +28,42 @@ def get_db():
 
         try:
             db = Global._database = MongoClient(
-            DB_URI,
-            maxPoolSize=50,
-            wTimeoutMS=2500,
-            serverSelectionTimeoutMS=3000
+                DB_URI,
+                maxPoolSize=50,
+                wTimeoutMS=250,
+                serverSelectionTimeoutMS=300
             )[DB_NAME]
 
-            print("server version:", db.client.server_info()["version"])
+            Global._internet_connection = True
 
-        except ServerSelectionTimeoutError as err:
-            # set the client and db names to 'None' and [] if exception
-            db = Global._database = None
-
-            # catch pymongo.errors.ServerSelectionTimeoutError
-            print("pymongo ERROR:", err)
+        except:
+            db = disable_connection()
 
     return db
 
 
 # Use LocalProxy to read the global db instance with just `db`
-db = LocalProxy(get_db)
+# db = LocalProxy(get_db)
+def disable_connection():
+    Global._database = None
+    Global._internet_connection = False
+    return None
 
 
 def get_questions():
     list_question = []
+    db = get_db()
     if db is not None:
         try:
             cursor = db.questions.find()
             for doc in cursor:
                 list_question.append(question_srtingid(doc))
+
+        except:
+            disable_connection()
+
         finally:
-            return []
+            return None
     return list_question
 
 
@@ -71,4 +74,3 @@ def question_srtingid(doc):
         'type': doc.get('type'),
         '_id': str(doc.get('_id'))
     }
-

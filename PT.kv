@@ -4,6 +4,17 @@
         padding: [20, 20, 20, 20]
         orientation: 'vertical'
 
+        Button:
+            text: 'Fill patient'
+            title_align: 'center'
+            size_hint: (1, None)
+            height: 100
+            on_press:
+                root.fill_patient()
+
+        Label:
+            id: internet_connection
+
         ScrollView:
             do_scroll_x: False
             do_scroll_y: True

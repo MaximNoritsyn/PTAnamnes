@@ -9,6 +9,7 @@ from kivy.uix.gridlayout import GridLayout
 from kivy.uix.scrollview import ScrollView
 from kivy.uix.textinput import TextInput
 import localstorage
+import Global
 
 if platform == "android":
      from android.permissions import request_permissions, Permission
@@ -32,11 +33,19 @@ class MainScreen(Screen):
             layout_question.ids['text'].text = i[1].get('text')
             if i[1].get('type') == 'num':
                 answer = TextInputAnswerNum()
+                layout_question.add_widget(answer)
             elif i[1].get('type') == 'string':
                 answer = TextInputAnswerString()
-            layout_question.add_widget(answer)
+                layout_question.add_widget(answer)
             layout.add_widget(layout_question)
         self.ids['questions'].add_widget(layout)
+        self.ids['internet_connection'].size_hint_y = 0
+        self.ids['internet_connection'].height = '0dp'
+        self.ids['internet_connection'].text = ''
+        if Global._internet_connection == False:
+            self.ids['internet_connection'].size_hint_y = 1
+            self.ids['internet_connection'].height = '10dp'
+            self.ids['internet_connection'].text = 'No internet connection'
 
     def on_enter(self, *args):
         self.fill_patient()
@@ -86,14 +95,14 @@ class TextInputAnswerString(TextInput):
 Builder.load_file("PT.kv")
 
 sm = ScreenManager()
-sm.add_widget(MainScreen(name='main'))
-sm.add_widget(SettingScreen(name='setting'))
-sm.add_widget(SubmitScreen(name='submit'))
 
 
 class PTApp(App):
     def build(self):
         localstorage.update_questions()
+        sm.add_widget(MainScreen(name='main'))
+        sm.add_widget(SettingScreen(name='setting'))
+        sm.add_widget(SubmitScreen(name='submit'))
         if localstorage.is_not_logged():
             sm.current = 'submit'
         return sm
