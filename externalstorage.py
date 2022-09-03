@@ -14,7 +14,7 @@ import ssl
 ssl._create_default_https_context = ssl._create_unverified_context
 
 config = configparser.ConfigParser()
-config.read(".ini")
+config.read("config.ini")
 
 
 def get_db():
@@ -35,6 +35,9 @@ def get_db():
             )[DB_NAME]
 
             Global._internet_connection = True
+        except ServerSelectionTimeoutError as err:
+            # set the client and db names to 'None' and [] if exception
+            db = disable_connection()
 
         except:
             db = disable_connection()
@@ -59,11 +62,11 @@ def get_questions():
             for doc in cursor:
                 list_question.append(question_srtingid(doc))
 
-        except:
+        except ServerSelectionTimeoutError:
             disable_connection()
 
-        finally:
-            return None
+        except:
+            disable_connection()
     return list_question
 
 
