@@ -36,7 +36,6 @@ def get_db():
 
             Global._internet_connection = True
         except ServerSelectionTimeoutError as err:
-            # set the client and db names to 'None' and [] if exception
             db = disable_connection()
 
         except:
@@ -60,7 +59,7 @@ def get_questions():
         try:
             cursor = db.questions.find()
             for doc in cursor:
-                list_question.append(question_srtingid(doc))
+                list_question.append(question_string_id(doc))
 
         except ServerSelectionTimeoutError:
             disable_connection()
@@ -70,7 +69,7 @@ def get_questions():
     return list_question
 
 
-def question_srtingid(doc):
+def question_string_id(doc):
     return {
         'text': doc.get('text'),
         'section': doc.get('section'),
