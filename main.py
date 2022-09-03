@@ -13,9 +13,7 @@ import Global
 
 if platform == "android":
      from android.permissions import request_permissions, Permission
-     request_permissions([Permission.INTERNET,
-                          Permission.READ_EXTERNAL_STORAGE,
-                          Permission.WRITE_EXTERNAL_STORAGE])
+     request_permissions([Permission.INTERNET])
 
 class MainScreen(Screen):
     def on_touch_move(self, touch):
