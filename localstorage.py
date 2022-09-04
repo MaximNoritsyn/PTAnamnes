@@ -1,6 +1,5 @@
 from kivy.storage.jsonstore import JsonStore
 import externalstorage
-import Global
 
 
 store_settings = JsonStore('PTA_Settings.json')

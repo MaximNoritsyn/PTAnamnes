@@ -1,12 +1,9 @@
 from kivy.app import App
 from kivy.lang import Builder
-from kivy.config import Config
 from kivy.uix.label import Label
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.utils import platform
-from kivy.core.window import Window
 from kivy.uix.gridlayout import GridLayout
-from kivy.uix.scrollview import ScrollView
 from kivy.uix.textinput import TextInput
 import localstorage
 import Global
@@ -43,7 +40,7 @@ class MainScreen(Screen):
         if Global._internet_connection == False:
             self.ids['internet_connection'].size_hint_y = 1
             self.ids['internet_connection'].height = '10dp'
-            self.ids['internet_connection'].text = 'No internet connection'
+            self.ids['internet_connection'].text = Global._text_error
 
     def on_enter(self, *args):
         self.fill_patient()
