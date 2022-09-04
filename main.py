@@ -9,8 +9,9 @@ import localstorage
 import Global
 
 if platform == "android":
-     from android.permissions import request_permissions, Permission
-     request_permissions([Permission.INTERNET])
+    from android.permissions import request_permissions, Permission
+
+    request_permissions([Permission.INTERNET])
 
 
 class MainScreen(Screen):
