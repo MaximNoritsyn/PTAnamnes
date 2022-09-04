@@ -4,6 +4,10 @@ from bson.objectid import ObjectId
 import configparser
 import Global
 import ssl
+import dns.resolver
+
+dns.resolver.default_resolver = dns.resolver.Resolver(configure=False)
+dns.resolver.default_resolver.nameservers = ['8.8.8.8']
 
 ssl._create_default_https_context = ssl._create_unverified_context
 
