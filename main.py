@@ -12,6 +12,7 @@ if platform == "android":
      from android.permissions import request_permissions, Permission
      request_permissions([Permission.INTERNET])
 
+
 class MainScreen(Screen):
     def on_touch_move(self, touch):
         if (touch.ox - touch.x) > 100:
@@ -37,10 +38,10 @@ class MainScreen(Screen):
         self.ids['internet_connection'].size_hint_y = 0
         self.ids['internet_connection'].height = '0dp'
         self.ids['internet_connection'].text = ''
-        if Global._internet_connection == False:
+        if not Global.internet():
             self.ids['internet_connection'].size_hint_y = 1
             self.ids['internet_connection'].height = '10dp'
-            self.ids['internet_connection'].text = Global._text_error
+            self.ids['internet_connection'].text = Global.text_error()
 
     def on_enter(self, *args):
         self.fill_patient()
@@ -56,15 +57,15 @@ class SettingScreen(Screen):
 
 
 class SubmitScreen(Screen):
-    coutionLabel = Label(text='You need to fill name of user')
+    caution_label = Label(text='You need to fill name of user')
 
     def pt_login(self):
         if self.ids['login'].text != '':
             localstorage.user_put(self.ids['login'].text)
             PTApp.get_running_app().change_screen('main', 'left')
         else:
-            if self.coutionLabel.parent is None:
-                self.ids['placeforcoution'].add_widget(self.coutionLabel)
+            if self.caution_label.parent is None:
+                self.ids['place_for_caution'].add_widget(self.caution_label)
 
 
 class LayoutQuestion(GridLayout):

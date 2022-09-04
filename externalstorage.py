@@ -1,5 +1,3 @@
-from werkzeug.local import LocalProxy
-
 from pymongo import MongoClient
 from pymongo.errors import ServerSelectionTimeoutError
 from bson.objectid import ObjectId
@@ -29,18 +27,18 @@ def get_db():
 
             Global._internet_connection = True
             Global._text_error = ''
-        except ServerSelectionTimeoutError as err:
+        except ServerSelectionTimeoutError:
             db = disable_connection()
 
         except BaseException as error:
-            db = disable_connection('An exception occurred: {}'.format(error))
+            db = disable_connection('{}'.format(error))
 
     return db
 
 
 # Use LocalProxy to read the global db instance with just `db`
 # db = LocalProxy(get_db)
-def disable_connection(text_error='No internet connection'):
+def disable_connection(text_error: str = 'No internet connection') -> object:
     Global._database = None
     Global._internet_connection = False
     Global._text_error = text_error
